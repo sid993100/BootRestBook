@@ -18,16 +18,21 @@ public class BookService {
     }
 
 //    -------------------------now we create method--------------------
-//    get all books
+    //    get single book by id
+    public Book getBookById(int id){
+        Book book=null;
+        try {
+            book=listOfBook.stream().filter(e->e.getId()==id).findFirst().get();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return book;
+    }
+    //    get all books
     public List<Book> getAllBooks(){
         return listOfBook;
     }
-//    get single book by id
-    public Book getBookById(int id){
-        Book book=null;
-        book=listOfBook.stream().filter(e->e.getId()==id).findFirst().get();
-        return book;
-    }
+
 
 //--------------create add method------------
     public Book addBook(Book book){
@@ -35,18 +40,18 @@ public class BookService {
     }
 
     //    ----------------create delete method---------------
-//    here we filter all the data which not equal to bid to get the filtered data and if i want to delete specific data then use foreach method
-    public void deleteBook(int bid){
-        listOfBook=listOfBook.stream().filter(book->{
-            if(book.getId()!=bid){
-                return true;
-            }else{
-                return false;
-            }
-        }).collect(Collectors.toList());
+    //    here we filter all the data which not equal to bid to get the filtered data and if i want to delete specific data then use foreach method
+        public void deleteBook(int bid){
+            listOfBook=listOfBook.stream().filter(book->{
+                if(book.getId()!=bid){
+                    return true;
+                }else{
+                    return false;
+                }
+            }).collect(Collectors.toList());
 
-//        we can do this in single line also
-//        listOfBook=listOfBook.stream().filter(book -> book.getId()!=bid).collect(Collectors.toList());
+    //        we can do this in single line also
+    //        listOfBook=listOfBook.stream().filter(book -> book.getId()!=bid).collect(Collectors.toList());
     }
 
 //    public void updateBook() {
