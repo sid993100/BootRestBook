@@ -3,11 +3,14 @@ package com.sid993100.BootRestBook.entities;
 import jakarta.persistence.*;
 
 @Entity
+//here, we write the table name book, if don't do this the default table name is create with class name
 @Table(name = "book")
 public class Book {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    we create use column name book_id for id, if not do this then the id is created with the name of id
+//    @Column(name = "book_id")
     private int id;
     private String title;
     private String author;
